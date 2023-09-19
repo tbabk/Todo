@@ -31,7 +31,7 @@ const todoSchema = new mongoose.Schema({
 const WorkTodo = db.model("WorkTodo", todoSchema);
 const DayTodo = db.model("DayTodo", todoSchema);
 
-var date = weekday.at(d.getDay()) + ", " + months.at(d.getMonth()) + " " + d.getDate(); 
+var date = weekday[d.getDay()] + ", " + months.at(d.getMonth()) + " " + d.getDate(); 
 
 app.use(express.static("public"));
 
