@@ -43,7 +43,6 @@ app.get("/", (req, res) => {
 
 app.get("/work", async (req, res) => {
     const WorkTodos = await WorkTodo.find();
-    console.log(WorkTodos);
     
     res.render("work.ejs", {
         todoList: WorkTodos,
@@ -53,7 +52,6 @@ app.get("/work", async (req, res) => {
 
 app.get("/day", async (req, res) => {
     const DayTodos = await DayTodo.find();
-    console.log(DayTodos); 
     
     res.render("day.ejs", {
         todoList: DayTodos,
@@ -74,7 +72,6 @@ app.post("/send", async (req, res) => {
 });
 
 app.post("/delete-day", async (req, res) => {
-    console.log(req.body);
     const result = await DayTodo.deleteOne({_id: req.body.todo});
     if (result.deletedCount === 1) {
         console.log("Successfully deleted");
@@ -85,7 +82,6 @@ app.post("/delete-day", async (req, res) => {
 });
 
 app.post("/delete-work", async (req, res) => {
-    console.log(req.body);
     const result = await WorkTodo.deleteOne({_id: req.body.todo});
     if (result.deletedCount === 1) {
         console.log("Successfully deleted");
@@ -93,10 +89,6 @@ app.post("/delete-work", async (req, res) => {
         console.log("No changes made");
     }
     res.redirect("/work");
-});
-
-app.get("/:val", (req, res) => {
-    console.log(req.params.val);
 });
 
 app.listen(port, () => {
